@@ -7,3 +7,9 @@ buriti|SearchInput
 	icon-cancel: Embed("assets/images/cancel.png");
 	icon-search: Embed("assets/images/search.png");
 }
+
+buriti|YoutubePlayer
+{
+	skinClass: ClassReference("brust.skins.YoutubePlayerSkin");
+	dropShadowVisible: true;	
+}

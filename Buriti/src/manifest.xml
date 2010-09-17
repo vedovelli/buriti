@@ -4,6 +4,8 @@
 
 	<!-- Components -->
 	<component id="SearchInput" class="brust.components.SearchInput"/>
+	<component id="YoutubeDisplay" class="brust.components.YoutubeDisplay"/>
+	<component id="YoutubePlayer" class="brust.components.YoutubePlayer"/>
 	
 	<!-- Layouts -->
 	<component id="Coverflow" class="brust.layouts.CoverflowLayout"/>

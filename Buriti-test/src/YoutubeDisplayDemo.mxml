@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:buriti="library://http://github.com/brust/buriti">
+	
+	<s:layout>
+		<s:HorizontalLayout />
+	</s:layout>
+	
+	<mx:Form>
+		<mx:FormItem label="videos">
+			<s:List id="myVideos" change="myVideos_changeHandler(event)">
+				<s:dataProvider>
+					<s:ArrayCollection>				
+						<fx:String>spK_4n8XYNk</fx:String>
+						<fx:String>rfQe3h1iMfM</fx:String>
+						<fx:String>a1CAqJHHBbM</fx:String>
+					</s:ArrayCollection>
+				</s:dataProvider>
+				<s:change>
+					<![CDATA[
+						myDisplay.videoId = myVideos.selectedItem;
+					]]>
+				</s:change>
+			</s:List>
+		</mx:FormItem>
+		<mx:FormItem label="mediaPlayerState">
+			<mx:Text text="{myDisplay.mediaPlayerState}" />
+		</mx:FormItem>		
+		<mx:FormItem label="quality" direction="horizontal">
+			<mx:Text text="{myDisplay.quality}" />
+			<s:ComboBox dataProvider="{new ArrayCollection(myDisplay.availabelQualityLevels) }">
+				<s:change>
+					<![CDATA[
+						myDisplay.quality = List(event.target).selectedItem;
+					]]>
+				</s:change>
+			</s:ComboBox>
+		</mx:FormItem>
+		<mx:FormItem label="bytesLoaded">
+			<mx:Text text="{myDisplay.bytesLoaded}" />
+		</mx:FormItem>
+		<mx:FormItem label="bytesTotal">
+			<mx:Text text="{myDisplay.bytesTotal}" />
+		</mx:FormItem>
+		<mx:FormItem label="startBytes">
+			<mx:Text text="{myDisplay.startBytes}" />
+		</mx:FormItem>
+		<mx:FormItem label="currentTime">
+			<mx:Text text="{myDisplay.currentTime}" />
+		</mx:FormItem>
+		<mx:FormItem label="duration">
+			<mx:Text text="{myDisplay.duration}" />
+		</mx:FormItem>
+	</mx:Form>
+	
+	<buriti:YoutubeDisplay id="myDisplay" autoPlay="true" />
+	
+</s:Application>
