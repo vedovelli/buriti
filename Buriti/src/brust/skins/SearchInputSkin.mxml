@@ -12,7 +12,6 @@
 
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:fb="http://ns.adobe.com/flashbuilder/2009" xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:buriti="library://http://github.com/brust/buriti"
 		blendMode="normal" minHeight="25" alpha.disabled=".5" xmlns:searchInputClasses="brust.components.searchInputClasses.*"> 
 	
 	<fx:Script>

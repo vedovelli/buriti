@@ -17,6 +17,6 @@
     <resourceEntry destPath="assets/images/search.png" sourcePath="assets/images/search.png"/>
   </includeResources>
   <namespaceManifests>
-    <namespaceManifestEntry manifest="manifest.xml" namespace="library://http://github.com/brust/buriti"/>
+    <namespaceManifestEntry manifest="manifest.xml" namespace="http://github.com/brust/buriti"/>
   </namespaceManifests>
 </flexLibProperties>
