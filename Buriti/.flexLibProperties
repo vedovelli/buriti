@@ -3,8 +3,19 @@
   <includeClasses>
     <classEntry path="brust.layouts.CoverflowLayout"/>
     <classEntry path="brust.utils.Reflector"/>
+    <classEntry path="brust.components.searchInputClasses.HighlightListItemRenderer"/>
+    <classEntry path="brust.components.searchInputClasses.FixedRichText"/>
+    <classEntry path="brust.components.searchInputClasses.SearchMode"/>
+    <classEntry path="brust.components.searchInputClasses.HighlightList"/>
+    <classEntry path="brust.events.SearchInputEvent"/>
+    <classEntry path="brust.events.HighlightListEvent"/>
+    <classEntry path="brust.skins.SearchInputSkin"/>
   </includeClasses>
-  <includeResources/>
+  <includeResources>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+    <resourceEntry destPath="assets/images/cancel.png" sourcePath="assets/images/cancel.png"/>
+    <resourceEntry destPath="assets/images/search.png" sourcePath="assets/images/search.png"/>
+  </includeResources>
   <namespaceManifests>
     <namespaceManifestEntry manifest="manifest.xml" namespace="library://http://github.com/brust/buriti"/>
   </namespaceManifests>

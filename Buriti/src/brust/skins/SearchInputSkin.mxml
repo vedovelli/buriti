@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--- The default skin class for the Spark SearchInput component. 
+
+@see brust.components.SearchInput
+
+@langversion 3.0
+@playerversion Flash 10
+@playerversion AIR 1.5
+@productversion Flex 4
+-->
+
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:fb="http://ns.adobe.com/flashbuilder/2009" xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:buriti="library://http://github.com/brust/buriti"
+		blendMode="normal" minHeight="25" alpha.disabled=".5" xmlns:searchInputClasses="brust.components.searchInputClasses.*"> 
+	
+	<fx:Script>
+		<![CDATA[
+			
+			/**
+			 * @inheritDoc
+			 */
+			override public function get focusSkinExclusions():Array { return [ textDisplay ] };            
+			
+		]]>
+	</fx:Script>
+    
+    <!-- host component -->
+    <fx:Metadata>
+        [HostComponent("brust.components.SearchInput")]
+    </fx:Metadata>  
+	
+	<!-- states -->
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+		<s:State name="focused" />
+    </s:states>
+	
+	<!-- transitions -->
+	<s:transitions>
+		<s:Transition>
+			<s:AnimateColor duration="350" targets="{[fill]}" />		
+		</s:Transition> 
+	</s:transitions>             
+	
+	<!-- fill and border -->
+	<s:Rect id="rect" top="0" bottom="0" right="0" left="0" radiusX="2" radiusY="2">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#5277FF" joints="miter" miterLimit="4" weight="1"/>
+		</s:stroke>
+		
+		<s:fill>
+			<s:SolidColor id="fill" color.normal="#A8D9F7" color.focused="#E9F2F7"/>
+		</s:fill>
+		
+		<s:filters.normal>
+			<s:GlowFilter id="f1" alpha="1.0" blurX="6" blurY="6" color="0x5380d0" inner="true" knockout="false" quality="2" strength="1"/>
+		</s:filters.normal>
+		
+		<s:filters.focused>			
+			<s:GlowFilter id="f4" blurX="6" blurY="6" color="#0065FF" inner="false" strength="1" alpha="1.0" quality="2" knockout="false"/>
+			<s:DropShadowFilter  id="f3" alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters.focused>
+		
+	</s:Rect>
+	
+	<!-- popUp -->
+	<!--- 	The PopUpAnchor control that opens the drop-down list. 	-->
+	<s:PopUpAnchor id="popUp"  left="16" right="0" top="1" bottom="1" verticalCenter="0"
+		popUpWidthMatchesAnchorWidth="true"  displayPopUp="false" popUpPosition="below">      
+		<s:Group id="dropDown" width="100%">
+			<searchInputClasses:HighlightList id="list" width="100%" lightColor="#FF0000" lightBgColor="#FFCCCC">
+				<searchInputClasses:layout> 
+					<s:VerticalLayout horizontalAlign="justify" gap="0"
+						requestedRowCount="{Math.min(hostComponent.maxRows, hostComponent.dataProvider.length)}"/> 
+				</searchInputClasses:layout> 
+			</searchInputClasses:HighlightList>
+		</s:Group>        
+	</s:PopUpAnchor>
+	
+	<!-- inputTxt -->
+	<s:RichEditableText id="textDisplay" left="16" right="18" top="1" bottom="1" verticalCenter="0"
+		fontSize="14" fontWeight="bold"
+		lineBreak="explicit" verticalAlign="middle" widthInChars="10" />
+	
+	<!-- prompt -->
+	<!--- 	Background text for help user 	-->
+	<s:Label id="prompt" bottom="1" lineBreak="explicit" fontSize="14"
+		color="#999999" fontStyle="italic"  left="16" right="18"  verticalCenter="0" />
+	
+	<!-- search icon -->
+	<s:BitmapImage id="searchImage" left="0" verticalCenter="0" />
+	
+	<!-- clear button -->
+	<mx:Image id="clearButton" right="2" verticalCenter="0" alpha=".3" alpha.focused="1"
+		buttonMode="true" useHandCursor="true"  showEffect="Fade" hideEffect="Fade"/>
+	
+</s:Skin>

@@ -15,6 +15,7 @@
   </compiler>
   <applications>
     <application path="CoverflowDemo.mxml"/>
+    <application path="SearchInputDemo.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

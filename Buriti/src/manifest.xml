@@ -2,6 +2,9 @@
 
 <componentPackage>
 
+	<!-- Components -->
+	<component id="SearchInput" class="brust.components.SearchInput"/>
+	
 	<!-- Layouts -->
 	<component id="Coverflow" class="brust.layouts.CoverflowLayout"/>
 	

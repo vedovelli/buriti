@@ -1,7 +1,9 @@
 /* CSS file */
-@namespace coc "http://www.coc.com.br";
+@namespace buriti "library://http://github.com/brust/buriti";
 
-coc|DMBox
+buriti|SearchInput
 {
-
+	skin-class: ClassReference("brust.skins.SearchInputSkin");
+	icon-cancel: Embed("assets/images/cancel.png");
+	icon-search: Embed("assets/images/search.png");
 }
