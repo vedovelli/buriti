@@ -14,7 +14,7 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="Main.mxml"/>
+    <application path="CoverflowDemo.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

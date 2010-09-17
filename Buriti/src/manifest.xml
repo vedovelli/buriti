@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<componentPackage>
+
+	<!-- Layouts -->
+	<component id="Coverflow" class="brust.layouts.CoverflowLayout"/>
+	
+	<!-- Utils -->
+	<component id="Reflector" class="brust.utils.Reflector"/>
+	
+</componentPackage>

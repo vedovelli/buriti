@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+	creationComplete="app_creationCompleteHandler(event)" xmlns:buriti="library://http://github.com/brust/buriti">
+	
+    <fx:Script>
+        <![CDATA[
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+
+            [Bindable]
+            private var schemes:ArrayCollection;
+			
+			[Bindable]
+			private var imagesURL:ArrayCollection;
+			
+			/**
+			 * @private
+			 * The app is ready
+			 */ 
+			private function app_creationCompleteHandler(event:FlexEvent):void
+			{
+				//add coverflow schemes items
+				schemes = new ArrayCollection();
+				schemes.addItem({label: "Sheme 1", projectionX: -1, projectionY: -1, focalLength: 300, hDistance: 100, depth: 1, rotation: -45,proximity:30});
+				schemes.addItem({label: "Sheme 2", projectionX: -1, projectionY: -1, focalLength: 300, hDistance: 103, depth: 1, rotation: -70,proximity:75});				
+				schemes.addItem({label: "Sheme 3", projectionX: -1, projectionY: 60, focalLength: 300, hDistance: 87, depth: 55, rotation: 0,proximity:30});
+				schemes.addItem({label: "Sheme 4", projectionX: 468, projectionY: 298, focalLength: 327, hDistance: 88, depth: 50, rotation: -45,proximity:30});
+				schemes.addItem({label: "Sheme 5", projectionX: 236, projectionY: -6, focalLength: 416, hDistance: 36, depth: 100, rotation: 0,proximity:30});
+				schemesSelector.selectedIndex = 0;
+				
+				//invoke Flickr service
+				service.send( sendObj );
+			}
+			
+			/**
+			 * @private
+			 * Add images on ArrayCollection according to the Flickr service result
+			 */ 
+			private function service_resultHandler(event:ResultEvent):void
+			{
+				imagesURL = new ArrayCollection();
+				for each(var node:XML in event.result.photoset.photo)
+				{
+					imagesURL.addItem("http://farm1" + ".static.flickr.com/" + node.@server + "/" + node.@id + "_" + node.@secret + ".jpg");
+				}
+			}
+			
+			/**
+			 * @private
+			 * Fault handler error
+			 */ 
+			private function service_faultHandler(event:FaultEvent):void
+			{
+				Alert.show("getPublicPhotos: " + event.fault.faultString);
+			}
+    
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+		
+		<!-- Flickr service config
+			get photos from a set: http://www.flickr.com/photos/saulobrust/sets/72157624093182980/
+		-->
+		<fx:Object id="sendObj" api_key="c7c425094e656cd6ceeedb80aed0a856" photoset_id="72157624093182980" 
+			method="flickr.photosets.getPhotos" />
+		
+		<!-- Flickr service -->
+		<s:HTTPService id="service" showBusyCursor="true" resultFormat="e4x"
+			url="http://api.flickr.com/services/rest"
+			result="service_resultHandler(event)" fault="service_faultHandler(event)"/>
+		
+		<!-- simple renderer - Coverflow list -->
+		<fx:Component id="renderer1">
+			<mx:Image source="{data}" />
+		</fx:Component>
+		
+		<!-- reflection renderer - Coverflow list -->
+        <fx:Component id="renderer2">            
+			<s:ItemRenderer autoDrawBackground="false">
+				<mx:Image id="img" source="{data}" horizontalCenter="0" verticalCenter="0" />				
+				<buriti:Reflector id="rfl" target="{img}" 
+					alpha="{outerDocument.alphaSlider.value}" falloff="{outerDocument.falloffSlider.value}" blurAmount="{outerDocument.blurSlider.value}" />
+			</s:ItemRenderer>
+        </fx:Component>		
+
+    </fx:Declarations>
+
+    <s:layout>
+        <s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+    </s:layout>	
+	
+	
+
+	<!-- Coverflow list -->
+    <s:List id="list" dataProvider="{imagesURL}" width="100%" height="700"
+        selectedIndex="@{selectedSlider.value}" itemRenderer="{rendererSelector.selectedItem.data}">
+        <s:layout>
+            <buriti:Coverflow id="coverflow" selectedIndex="{list.selectedIndex}"
+                horizontalDistance="{horizontalDistance.value}" selectedItemProximity="{selectedItemProximity.value}"
+                depthDistance="{depthDistance.value}" elementRotation="{elementRotation.value}" focalLength="{focalLength.value}"
+                perspectiveProjectionX="{projectionX.value}" perspectiveProjectionY="{projectionY.value}"/>
+        </s:layout>
+    </s:List>
+	
+	
+	
+	
+	
+	<!-- CONFIGURATION FORM -->
+	<s:HGroup horizontalCenter="0">
+		
+		<!-- List configuration -->
+        <mx:Form>
+			<mx:FormHeading label="List" />			
+            <mx:FormItem label="Selected Item">
+                <s:HSlider id="selectedSlider" minimum="0" maximum="{imagesURL.length-1}" value="{list.selectedIndex}" stepSize="1" dataTipPrecision="0"/>
+            </mx:FormItem>			
+			<mx:FormItem label="Renderer">
+				<s:ComboBox id="rendererSelector" selectedIndex="0">
+					<s:dataProvider>
+						<s:ArrayCollection>
+							<fx:Object label="Simple" data="{renderer1}"/>
+							<fx:Object label="Reflection" data="{renderer2}"/>
+						</s:ArrayCollection>
+					</s:dataProvider>
+				</s:ComboBox>
+			</mx:FormItem>
+        </mx:Form>
+
+		<!-- Coverflow configuration -->
+        <mx:Form>			
+			<mx:FormHeading label="Coverflow" />			
+			<mx:FormItem label="Schemes">
+				<s:ComboBox id="schemesSelector" dataProvider="{schemes}"/>
+			</mx:FormItem>    			
+			<mx:FormItem label="Perspectivice Projection center" direction="vertical">
+				<s:HSlider id="projectionX" minimum="-1000" maximum="1000" 
+						   value="{schemesSelector.selectedItem.projectionX}" dataTipPrecision="0"/>
+				<s:HSlider id="projectionY" minimum="-1000" maximum="1000" value="{schemesSelector.selectedItem.projectionY}" dataTipPrecision="0"/>
+			</mx:FormItem>			
+			<mx:FormItem label="Element rotation">
+				<s:HSlider id="elementRotation" minimum="-90" maximum="0" stepSize="1" value="{schemesSelector.selectedItem.rotation}" dataTipPrecision="0"/>
+			</mx:FormItem>			
+            <mx:FormItem label="Focal length">
+                <s:HSlider id="focalLength" minimum="1" maximum="1000" value="{schemesSelector.selectedItem.focalLength}" dataTipPrecision="0"/>
+            </mx:FormItem>
+            <mx:FormItem label="Horizontal distance">
+                <s:HSlider id="horizontalDistance" minimum="0" maximum="300" stepSize="1"
+                    value="{schemesSelector.selectedItem.hDistance}" dataTipPrecision="0"/>
+            </mx:FormItem>
+            <mx:FormItem label="Depth distance">
+                <s:HSlider id="depthDistance" minimum="1" maximum="200" stepSize="1"
+                    value="{schemesSelector.selectedItem.depth}" dataTipPrecision="0"/>
+            </mx:FormItem>
+            <mx:FormItem label="Selected Item proximity">
+                <s:HSlider id="selectedItemProximity" minimum="0" maximum="200" stepSize="1" 
+						   value="{schemesSelector.selectedItem.proximity}" dataTipPrecision="0"/>
+            </mx:FormItem>
+        </mx:Form>
+		
+		<!-- Reflector configuration -->
+		<mx:Form visible="{(rendererSelector.selectedIndex==1)}" showEffect="Fade" hideEffect="Fade">
+			<mx:FormHeading label="Reflector" />
+			<mx:FormItem label="Alpha">
+				<s:HSlider id="alphaSlider" liveDragging="true" showDataTip="true" dataTipPrecision="2"
+					width="159" minimum="0.0" maximum="1.0" value="0.3" snapInterval="0.01"/>
+			</mx:FormItem>
+			<mx:FormItem label="FalloOff">
+				<s:HSlider id="falloffSlider" liveDragging="true" showDataTip="true" dataTipPrecision="2"
+					width="159" minimum="0.0" maximum="1.0" value="0.7" snapInterval="0.01"/>
+			</mx:FormItem>
+			<mx:FormItem label="Blur">
+				<s:HSlider id="blurSlider" liveDragging="true" showDataTip="true" dataTipPrecision="2"
+					width="159" minimum="0.0" maximum="1.0" value="0.4" snapInterval="0.01"/>
+			</mx:FormItem>				
+		</mx:Form>
+		
+    </s:HGroup>
+</s:Application>

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" version="3">
-  <includeClasses/>
+  <includeClasses>
+    <classEntry path="brust.layouts.CoverflowLayout"/>
+    <classEntry path="brust.utils.Reflector"/>
+  </includeClasses>
   <includeResources/>
-  <namespaceManifests/>
+  <namespaceManifests>
+    <namespaceManifestEntry manifest="manifest.xml" namespace="library://http://github.com/brust/buriti"/>
+  </namespaceManifests>
 </flexLibProperties>
