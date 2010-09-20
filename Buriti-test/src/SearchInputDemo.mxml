@@ -5,7 +5,7 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import brust.components.searchInputClasses.SearchMode;
+			import buriti.components.searchInputClasses.SearchMode;
 		]]>
 	</fx:Script>
 	

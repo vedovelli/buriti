@@ -1,4 +1,4 @@
-package brust.components.searchInputClasses 
+package buriti.components.searchInputClasses 
 {
 	
 /**

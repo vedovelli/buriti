@@ -1,6 +1,6 @@
-package brust.components.searchInputClasses {
+package buriti.components.searchInputClasses {
     
-import brust.events.HighlightListEvent;
+import buriti.events.HighlightListEvent;
 
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
@@ -29,7 +29,7 @@ import spark.components.List;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-[Event (name="itemClick", type="brust.events.HighlightListEvent")]
+[Event (name="itemClick", type="buriti.events.HighlightListEvent")]
 
 /**
  *  Dispatched when loockup value change.
@@ -41,7 +41,7 @@ import spark.components.List;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-[Event (name="lookupValueChange", type="brust.events.HighlightListEvent")]
+[Event (name="lookupValueChange", type="buriti.events.HighlightListEvent")]
 
 public class HighlightList extends List 
 {             

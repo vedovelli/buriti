@@ -1,4 +1,4 @@
-package brust.components
+package buriti.components
 {
 	/**
 	 * The YoutubeQuality class enumerates public constants that describe the Youtube video quality

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
     xmlns:mx="library://ns.adobe.com/flex/mx"
-	creationComplete="app_creationCompleteHandler(event)" xmlns:buriti="http://github.com/brust/buriti">
+	xmlns:buriti="http://github.com/brust/buriti"
+	creationComplete="app_creationCompleteHandler(event)" xmlns:utils="buriti.utils.*" >
 	
     <fx:Script>
         <![CDATA[
@@ -82,7 +83,7 @@
         <fx:Component id="renderer2">            
 			<s:ItemRenderer autoDrawBackground="false">
 				<mx:Image id="img" source="{data}" horizontalCenter="0" verticalCenter="0" />				
-				<buriti:Reflector id="rfl" target="{img}" 
+				<utils:Reflector id="rfl" target="{img}" 
 					alpha="{outerDocument.alphaSlider.value}" falloff="{outerDocument.falloffSlider.value}" blurAmount="{outerDocument.blurSlider.value}" />
 			</s:ItemRenderer>
         </fx:Component>		

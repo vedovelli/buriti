@@ -1,4 +1,4 @@
-package brust.components
+package buriti.components
 {
 	
 import flash.display.DisplayObject;

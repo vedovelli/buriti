@@ -1,6 +1,6 @@
-package brust.components.searchInputClasses
+package buriti.components.searchInputClasses
 {
-import brust.events.HighlightListEvent;
+import buriti.events.HighlightListEvent;
 
 import flashx.textLayout.edit.EditManager;
 import flashx.textLayout.edit.SelectionState;

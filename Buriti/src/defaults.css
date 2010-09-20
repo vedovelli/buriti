@@ -3,13 +3,13 @@
 
 buriti|SearchInput
 {
-	skin-class: ClassReference("brust.skins.SearchInputSkin");
+	skin-class: ClassReference("buriti.skins.SearchInputSkin");
 	icon-cancel: Embed("assets/images/cancel.png");
 	icon-search: Embed("assets/images/search.png");
 }
 
 buriti|YoutubePlayer
 {
-	skinClass: ClassReference("brust.skins.YoutubePlayerSkin");
+	skinClass: ClassReference("buriti.skins.YoutubePlayerSkin");
 	dropShadowVisible: true;	
 }

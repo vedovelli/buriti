@@ -1,10 +1,10 @@
-package brust.components 
+package buriti.components 
 {
 
-import brust.components.searchInputClasses.HighlightList;
-import brust.components.searchInputClasses.SearchMode;
-import brust.events.HighlightListEvent;
-import brust.events.SearchInputEvent;
+import buriti.components.searchInputClasses.HighlightList;
+import buriti.components.searchInputClasses.SearchMode;
+import buriti.events.HighlightListEvent;
+import buriti.events.SearchInputEvent;
 
 import flash.display.DisplayObjectContainer;
 import flash.events.Event;
@@ -48,7 +48,7 @@ import spark.utils.LabelUtil;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-[Event (name="select", type="brust.events.SearchInputEvent")]		
+[Event (name="select", type="buriti.events.SearchInputEvent")]		
 
 //--------------------------------------
 //  Skin states

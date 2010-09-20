@@ -1,4 +1,4 @@
-package brust.utils
+package buriti.utils
 {
 import flash.display.BitmapData;
 import flash.display.GradientType;

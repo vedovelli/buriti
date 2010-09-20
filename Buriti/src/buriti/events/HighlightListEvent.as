@@ -1,4 +1,4 @@
-package brust.events {
+package buriti.events {
 	
 import flash.events.Event;
 	

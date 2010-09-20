@@ -3,14 +3,14 @@
 <componentPackage>
 
 	<!-- Components -->
-	<component id="SearchInput" class="brust.components.SearchInput"/>
-	<component id="YoutubeDisplay" class="brust.components.YoutubeDisplay"/>
-	<component id="YoutubePlayer" class="brust.components.YoutubePlayer"/>
+	<component id="SearchInput" class="buriti.components.SearchInput"/>
+	<component id="YoutubeDisplay" class="buriti.components.YoutubeDisplay"/>
+	<component id="YoutubePlayer" class="buriti.components.YoutubePlayer"/>
 	
 	<!-- Layouts -->
-	<component id="Coverflow" class="brust.layouts.CoverflowLayout"/>
+	<component id="Coverflow" class="buriti.layouts.CoverflowLayout"/>
 	
 	<!-- Utils -->
-	<component id="Reflector" class="brust.utils.Reflector"/>
+	<component id="Reflector" class="buriti.utils.Reflector"/>
 	
 </componentPackage>

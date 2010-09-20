@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" version="3">
   <includeClasses>
-    <classEntry path="brust.layouts.CoverflowLayout"/>
-    <classEntry path="brust.utils.Reflector"/>
-    <classEntry path="brust.components.searchInputClasses.HighlightListItemRenderer"/>
-    <classEntry path="brust.components.searchInputClasses.FixedRichText"/>
-    <classEntry path="brust.components.searchInputClasses.SearchMode"/>
-    <classEntry path="brust.components.searchInputClasses.HighlightList"/>
-    <classEntry path="brust.events.SearchInputEvent"/>
-    <classEntry path="brust.events.HighlightListEvent"/>
-    <classEntry path="brust.skins.SearchInputSkin"/>
+    <classEntry path="buriti.components.SearchInput"/>
+    <classEntry path="buriti.components.YoutubeDisplay"/>
+    <classEntry path="buriti.components.YoutubePlayer"/>
+    <classEntry path="buriti.components.YoutubeQuality"/>
+    <classEntry path="buriti.components.searchInputClasses.FixedRichText"/>
+    <classEntry path="buriti.components.searchInputClasses.HighlightList"/>
+    <classEntry path="buriti.components.searchInputClasses.HighlightListItemRenderer"/>
+    <classEntry path="buriti.components.searchInputClasses.SearchMode"/>
+    <classEntry path="buriti.events.HighlightListEvent"/>
+    <classEntry path="buriti.events.SearchInputEvent"/>
+    <classEntry path="buriti.layouts.CoverflowLayout"/>
+    <classEntry path="buriti.skins.SearchInputSkin"/>
+    <classEntry path="buriti.skins.YoutubePlayerSkin"/>
+    <classEntry path="buriti.utils.Reflector"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
