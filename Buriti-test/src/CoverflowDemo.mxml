@@ -2,7 +2,7 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
     xmlns:mx="library://ns.adobe.com/flex/mx"
 	xmlns:buriti="http://github.com/brust/buriti"
-	creationComplete="app_creationCompleteHandler(event)" xmlns:utils="buriti.utils.*" >
+	creationComplete="app_creationCompleteHandler(event)" >
 	
     <fx:Script>
         <![CDATA[
@@ -81,23 +81,42 @@
 		
 		<!-- reflection renderer - Coverflow list -->
         <fx:Component id="renderer2">            
-			<s:ItemRenderer autoDrawBackground="false">
-				<mx:Image id="img" source="{data}" horizontalCenter="0" verticalCenter="0" />				
-				<utils:Reflector id="rfl" target="{img}" 
-					alpha="{outerDocument.alphaSlider.value}" falloff="{outerDocument.falloffSlider.value}" blurAmount="{outerDocument.blurSlider.value}" />
+			<s:ItemRenderer autoDrawBackground="false">				
+				<fx:Declarations>
+					<s:BlurFilter id="blur" blurX="5" blurY="5" quality="2" />
+				</fx:Declarations>				
+				<s:VGroup gap="0" buttonMode="true" useHandCursor="true">	
+					<s:BitmapImage source="{data}" height="200" scaleMode="letterbox" />		
+					<s:BitmapImage source="{data}" height="200" scaleMode="letterbox" smooth="true" scaleY="-1" alpha="0.3" filters="{[blur]}"><!-- #fix: maskType="alpha" -->
+						<s:mask>
+							<s:Group>
+								<s:Rect height="500" width="420">
+									<s:fill>
+										<s:LinearGradient rotation="-90">
+											<s:GradientEntry color="white" alpha="1" />
+											<s:GradientEntry color="white" alpha="0" ratio="0.4" />
+										</s:LinearGradient>
+									</s:fill>
+								</s:Rect>
+							</s:Group>
+						</s:mask>
+						
+					</s:BitmapImage>
+				</s:VGroup>
 			</s:ItemRenderer>
-        </fx:Component>		
+        </fx:Component>	
+		
+		<s:BlurFilter id="blur" blurX="5" blurY="5" quality="2" />
 
     </fx:Declarations>
 
     <s:layout>
         <s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
-    </s:layout>	
-	
+    </s:layout>		
 	
 
 	<!-- Coverflow list -->
-    <s:List id="list" dataProvider="{imagesURL}" width="100%" height="700"
+    <s:List id="list" dataProvider="{imagesURL}" width="100%" height="700" contentBackgroundColor="#000000"
         selectedIndex="@{selectedSlider.value}" itemRenderer="{rendererSelector.selectedItem.data}">
         <s:layout>
             <buriti:Coverflow id="coverflow" selectedIndex="{list.selectedIndex}"
@@ -106,9 +125,6 @@
                 perspectiveProjectionX="{projectionX.value}" perspectiveProjectionY="{projectionY.value}"/>
         </s:layout>
     </s:List>
-	
-	
-	
 	
 	
 	<!-- CONFIGURATION FORM -->
@@ -162,23 +178,6 @@
 						   value="{schemesSelector.selectedItem.proximity}" dataTipPrecision="0"/>
             </mx:FormItem>
         </mx:Form>
-		
-		<!-- Reflector configuration -->
-		<mx:Form visible="{(rendererSelector.selectedIndex==1)}" showEffect="Fade" hideEffect="Fade">
-			<mx:FormHeading label="Reflector" />
-			<mx:FormItem label="Alpha">
-				<s:HSlider id="alphaSlider" liveDragging="true" showDataTip="true" dataTipPrecision="2"
-					width="159" minimum="0.0" maximum="1.0" value="0.3" snapInterval="0.01"/>
-			</mx:FormItem>
-			<mx:FormItem label="FalloOff">
-				<s:HSlider id="falloffSlider" liveDragging="true" showDataTip="true" dataTipPrecision="2"
-					width="159" minimum="0.0" maximum="1.0" value="0.7" snapInterval="0.01"/>
-			</mx:FormItem>
-			<mx:FormItem label="Blur">
-				<s:HSlider id="blurSlider" liveDragging="true" showDataTip="true" dataTipPrecision="2"
-					width="159" minimum="0.0" maximum="1.0" value="0.4" snapInterval="0.01"/>
-			</mx:FormItem>				
-		</mx:Form>
 		
     </s:HGroup>
 </s:Application>

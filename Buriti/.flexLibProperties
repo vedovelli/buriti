@@ -14,7 +14,6 @@
     <classEntry path="buriti.layouts.CoverflowLayout"/>
     <classEntry path="buriti.skins.SearchInputSkin"/>
     <classEntry path="buriti.skins.YoutubePlayerSkin"/>
-    <classEntry path="buriti.utils.Reflector"/>
     <classEntry path="buriti.utils.XmlUtil"/>
   </includeClasses>
   <includeResources>

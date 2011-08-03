@@ -10,7 +10,4 @@
 	<!-- Layouts -->
 	<component id="Coverflow" class="buriti.layouts.CoverflowLayout"/>
 	
-	<!-- Utils -->
-	<component id="Reflector" class="buriti.utils.Reflector"/>
-	
 </componentPackage>
