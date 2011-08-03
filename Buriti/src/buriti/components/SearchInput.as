@@ -91,9 +91,6 @@ public class SearchInput extends TextInput
 	[SkinPart(required="true", type="spark.components.PopUpAnchor")]
 	public var popUp:PopUpAnchor;
 	
-	[SkinPart(required="false", type="spark.components.Label")]
-	public var prompt:Label;
-	
 	[SkinPart(required="false", type="spark.primitives.BitmapImage;")]
 	public var searchImage:BitmapImage;
 	
@@ -268,12 +265,7 @@ public class SearchInput extends TextInput
 	
 	public function set promptText(value:String):void
 	{
-		_promptText = value;
-		
-		if (prompt)
-			prompt.text = value;
-		else
-			promptProperties.text = value;
+		prompt = value;
 	}
 
 	//----------------------------------
@@ -374,7 +366,6 @@ public class SearchInput extends TextInput
 	{
 		super.focusInHandler(event);	
 		
-		prompt.visible = false;
 		selectAll();
 		
 		_focused = true;
@@ -384,8 +375,6 @@ public class SearchInput extends TextInput
 	override protected function focusOutHandler(event:FocusEvent):void
 	{
 		super.focusOutHandler(event);
-		
-		prompt.visible = !Boolean(text.length);
 		
 		_focused = false;
 		invalidateSkinState();			
@@ -426,12 +415,6 @@ public class SearchInput extends TextInput
 			clearButton.addEventListener(MouseEvent.CLICK, cancel_clickHandler);
 			clearButton.addEventListener("iconCancelChanged", cancelButton_iconChangedHandler);	
 			clearButton.visible = (text != null && text.length > 0);
-		}
-		
-		else if (instance == prompt)
-		{
-			if (promptProperties.text !== undefined)
-				prompt.text = promptProperties.text;
 		}
 	}  
 	
